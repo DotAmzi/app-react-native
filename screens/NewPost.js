@@ -185,7 +185,7 @@ const mapStateToProps = state => {
   }
 }
 
-const NewPostClass = connect(mapStateToProps, { 
+const NewPost = connect(mapStateToProps, { 
   pictureChanged, 
   titleChanged, 
   descriptionChanged,
@@ -195,4 +195,6 @@ const NewPostClass = connect(mapStateToProps, {
   facebookChanged,
   instagramChanged,
   twitterChanged
-})(NewPost);
+})(NewPostClass);
+
+export { NewPost };
