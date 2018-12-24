@@ -14,7 +14,7 @@
   }, {
     "type": "text",
     "text": "webSite (optional)",
-    "name": "title",
+    "name": "website",
     "step": 1
   }, {
     "type": "arrow",

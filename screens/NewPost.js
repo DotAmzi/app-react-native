@@ -4,7 +4,8 @@ import {
   View,
   StyleSheet,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  Text
 } from 'react-native';
 import {SwitchElement} from "../components/switchElement";
 import { ArrowElement } from '../components/arrowElement';
@@ -83,7 +84,7 @@ class NewPost extends Component {
   }
 
   navigationButtonPressed({ buttonId }) {
-    if(buttonId === 'next-post' && this.state.step === 1) {
+    if(buttonId === 'next-post' && this.state.step === 1 && this.props.description !== '') {
       this.setState({step: 2})
     }
     if(buttonId === 'cancel-post' && this.state.step === 2) {
@@ -101,9 +102,13 @@ class NewPost extends Component {
     }
   }
 
+  _keyboardDidShow () {
+    document.getElementById('component').style
+  }
+
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View id="component" style={{flex: 1}}>
         {this.getPhoto(this.state)}
         <FlatList
           data={this.state.elements}
@@ -117,8 +122,9 @@ class NewPost extends Component {
                     <View style={styles.line}>
                       <TextInput
                         style={styles.fieldText}
-                        onChangeText={(text) => this.setState(item.name)}
-                        value={item.text}
+                        onChangeText={(text) => this.props[item.name + 'Changed'](text)}
+                        value={this.props[item.name]}
+                        placeholder={item.text}
                       />
                     </View>
                   )
