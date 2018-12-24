@@ -138,6 +138,14 @@ class NewPost extends Component {
     }
   }
 
+  goToScreen = (screenName) => {
+    Navigation.push(this.props.componentId, {
+      component: {
+        name: screenName
+      }
+    });
+  }
+
   render() {
     return (
       <View>
@@ -194,9 +202,11 @@ class NewPost extends Component {
                 
                 case "tags":
                   return (
-                    <View style={styles.line}>
-                      <ArrowElement text={item.text} />
-                    </View>
+                    <TouchableOpacity onPress={() => this.goToScreen('redesocial.tags')}>
+                      <View style={styles.line}>
+                        <ArrowElement text={item.text} />
+                      </View>
+                    </TouchableOpacity>
                   )
                 break;
               
