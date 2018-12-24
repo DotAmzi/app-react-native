@@ -52,6 +52,13 @@ export const tagsChanged = (text) => {
   };
 };
 
+export const dispatchSuccess = (dispatch, tags) => {
+  dispatch({
+    type: INFOR_USER_SUCCESS,
+    payload: tags
+  });
+};
+
 export const facebookChanged = (text) => {
   return {
     type: FACEBOOK,

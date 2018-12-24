@@ -11,7 +11,7 @@ import { Navigation } from "react-native-navigation";
 
 const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
-Navigation.registerComponent('redesocial.tags', () => Tags);
+Navigation.registerComponentWithRedux('redesocial.tags', () => Tags, Provider, store);
 Navigation.registerComponentWithRedux('redesocial.newPost', () => NewPost, Provider, store);
 
 Navigation.events().registerAppLaunchedListener(() => { 

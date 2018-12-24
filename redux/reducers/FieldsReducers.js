@@ -7,7 +7,8 @@ import {
   TAGS,
   FACEBOOK,
   INSTAGRAM,
-  TWITTER
+  TWITTER,
+  TAGS_SELECT
   } from '../actions/types';
   
   const INITIAL_STATE = {
@@ -17,6 +18,7 @@ import {
     website: '',
     location: '',
     tags: [],
+    tagsSelect: [],
     facebook: false,
     instagram: false,
     twitter: false
@@ -36,6 +38,8 @@ import {
         return { ...state, location: action.payload };
       case TAGS:
         return { ...state, tags: action.payload };
+      case TAGS_SELECT:
+        return { ...state, tagsSelect: action.payload };
       case FACEBOOK:
         return { ...state, facebook: action.payload };
       case INSTAGRAM:

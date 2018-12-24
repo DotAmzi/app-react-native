@@ -21,7 +21,6 @@ import {
   descriptionChanged,
   websiteChanged, 
   locationChanged,
-  tagsChanged,
   facebookChanged,
   instagramChanged,
   twitterChanged
@@ -243,7 +242,7 @@ const mapStateToProps = state => {
     description: state.fields.description,
     website: state.fields.website,
     location: state.fields.location,
-    tags: state.fields.tags,
+    tagsSelect: state.fields.tagsSelect,
     facebook: state.fields.facebook,
     instagram: state.fields.instagram,
     twitter: state.fields.twitter
@@ -256,7 +255,6 @@ export default connect(mapStateToProps, {
   descriptionChanged,
   websiteChanged, 
   locationChanged,
-  tagsChanged,
   facebookChanged,
   instagramChanged,
   twitterChanged

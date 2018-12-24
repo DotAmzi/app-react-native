@@ -5,6 +5,7 @@ export const WEBSITE = 'website';
 
 export const LOCATION = 'location';
 export const TAGS = 'tags';
+export const TAGS_SELECT = 'tags_select';
 export const FACEBOOK = 'facebook';
 export const INSTAGRAM = 'instagram';
 export const TWITTER = 'twitter';

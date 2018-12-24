@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   Text,
   View,
   StyleSheet,
-  Button
+  TextInput
 } from 'react-native';
+
+import { 
+  tagsChanged
+} from '../redux/actions';
 
 import { Navigation } from "react-native-navigation";
 
-export default class Tags extends Component {
+class Tags extends Component {
   static get options() {
     return {
       topBar: {
@@ -26,6 +31,9 @@ export default class Tags extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      fieldSearch: null
+    }
     Navigation.events().bindComponent(this); 
   }
 
@@ -33,7 +41,7 @@ export default class Tags extends Component {
     if(buttonId === 'back') {
       Navigation.push(this.props.componentId, {
         component: {
-          name: 'redesocial.newPost'
+          name: 'redesocial.Tags'
         }
       });
     }
@@ -43,12 +51,37 @@ export default class Tags extends Component {
   render() {
     return (
 			<View>
-				<Text>Home</Text>
+				<View style={styles.line}>
+          <TextInput
+            style={styles.fieldText}
+            onChangeText={(text) => this.setState({fieldSearch: text})}
+            value={this.state.fieldSearch}
+            placeholder='Digite sua tag'
+          />
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
+  fieldText: {
+    height: 70,
+    fontSize: 20
+  },
+  line: {
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+  }
 });
+
+const mapStateToProps = state => {
+  return {
+    tags: state.fields.tags,
+    tagsSelect: state.fields.tagsSelect
+  }
+};
+
+export default connect(mapStateToProps, { 
+  tagsChanged
+})(Tags);
