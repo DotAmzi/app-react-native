@@ -5,10 +5,12 @@ import {
   WEBSITE,
   LOCATION,
   TAGS,
+  TAGS_SUCCESS,
   FACEBOOK,
   INSTAGRAM,
   TWITTER
 } from './types';
+import feed from '../../assets/feed.json';
 
 export const pictureChanged = (text) => {
   return {
@@ -47,14 +49,23 @@ export const locationChanged = (text) => {
 
 export const tagsChanged = (text) => {
   return {
-    type: TAGS,
+    type: LOCATION,
     payload: text
   };
 };
 
-export const dispatchSuccess = (dispatch, tags) => {
+export const tagsLoad = () => {
+  return (dispatch) => {
+    dispatch({ type: TAGS });
+    setTimeout(() => {
+      dispatchTagsSuccess(dispatch, feed);
+    }, 1500)
+  };
+};
+
+export const dispatchTagsSuccess = (dispatch, tags) => {
   dispatch({
-    type: INFOR_USER_SUCCESS,
+    type: TAGS_SUCCESS,
     payload: tags
   });
 };

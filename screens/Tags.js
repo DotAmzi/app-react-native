@@ -4,11 +4,13 @@ import {
   Text,
   View,
   StyleSheet,
-  TextInput
+  TextInput,
+  FlatList
 } from 'react-native';
 
 import { 
-  tagsChanged
+  tagsChanged,
+  tagsLoad
 } from '../redux/actions';
 
 import { Navigation } from "react-native-navigation";
@@ -32,46 +34,92 @@ class Tags extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fieldSearch: null
+      fieldSearch: null,
+      isFetching: false,
+      list: this.props.tags
     }
     Navigation.events().bindComponent(this); 
+  }
+
+  onRefresh() {
+    this.setState({ isFetching: false }, function() { this.setState({list: this.props.tags}) });
+  }
+
+  componentDidMount() {
+    this.props.tagsLoad();
   }
 
   navigationButtonPressed({ buttonId }) {
     if(buttonId === 'back') {
       Navigation.push(this.props.componentId, {
         component: {
-          name: 'redesocial.Tags'
+          name: 'redesocial.newPost'
         }
       });
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    const oldProps = this.props
+    if(oldProps.tags !== newProps.tags) {
+      this.onRefresh();
+    }
+  }
 
   render() {
     return (
 			<View>
-				<View style={styles.line}>
+        <View style={styles.line}>
           <TextInput
-            style={styles.fieldText}
-            onChangeText={(text) => this.setState({fieldSearch: text})}
+            style={styles.input}
+            onChangeText={(text) => {
+              this.setState({fieldSearch: text});
+              return this.onRefresh();
+            }}
             value={this.state.fieldSearch}
-            placeholder='Digite sua tag'
+            placeholder='Type your tag'
           />
         </View>
+
+        <FlatList
+          data={this.state.list}
+          onRefresh={() => this.setState({list: this.props.tags})}
+          refreshing={this.state.isFetching}
+          renderItem={({item}) => {           
+            if(
+              (this.state.fieldSearch === null) ||
+              (
+                item.name.search(this.state.fieldSearch) > -1 ||
+                item.Editora.search(this.state.fieldSearch)  > -1
+              )
+            ){
+              return (<View style={styles.line}>
+                <Text style={styles.fieldText}>{item.name}</Text>
+              </View>)
+            }
+          }}
+        />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  input: {
+    margin: 5,
+    fontSize: 20,
+    borderWidth: 0.5,
+    borderColor: 'black',
+    borderRadius: 5
+  },
   fieldText: {
-    height: 70,
+    padding: 30,
     fontSize: 20
   },
   line: {
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
+    
   }
 });
 
@@ -83,5 +131,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, { 
-  tagsChanged
+  tagsChanged,
+  tagsLoad
 })(Tags);

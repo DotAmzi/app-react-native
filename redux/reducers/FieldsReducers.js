@@ -5,6 +5,7 @@ import {
   WEBSITE,
   LOCATION,
   TAGS,
+  TAGS_SUCCESS,
   FACEBOOK,
   INSTAGRAM,
   TWITTER,
@@ -37,7 +38,9 @@ import {
       case LOCATION:
         return { ...state, location: action.payload };
       case TAGS:
-        return { ...state, tags: action.payload };
+        return { ...state };
+      case TAGS_SUCCESS:
+        return { ...state, tags: action.payload  };
       case TAGS_SELECT:
         return { ...state, tagsSelect: action.payload };
       case FACEBOOK:
