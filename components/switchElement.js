@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 
-const SwitchElement = ({sub}) => {
+const SwitchElement = ({sub, valueProps, onValueChange}) => {
 
 	return (
 		<View>
@@ -21,7 +21,7 @@ const SwitchElement = ({sub}) => {
 				</View>
 
 				<View style={{width: 50, alignSelf: 'center'}}>
-					<Switch />
+					<Switch value={valueProps} onValueChange={onValueChange} />
 				</View>
 				
 			</View>

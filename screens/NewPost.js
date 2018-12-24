@@ -153,7 +153,12 @@ class NewPost extends Component {
 
                 case "toogle":
                   return (
-                    <SwitchElement sub={item.text} />
+                    <SwitchElement 
+                      sub={item.text}
+                      name={item.name}
+                      onValueChange={(value) => this.props[item.name + 'Changed'](value)}
+                      valueProps={this.props[item.name]}
+                    />
                   )
                 break;
 
