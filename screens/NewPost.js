@@ -9,6 +9,7 @@ import {
 import {SwitchElement} from "../components/switchElement";
 import { ArrowElement } from '../components/arrowElement';
 import { Navigation } from "react-native-navigation";
+import listElement from "../assets/listElements.json";
 
 export default class NewPost extends Component {
   static get options() {
@@ -34,41 +35,7 @@ export default class NewPost extends Component {
     super(props);
     Navigation.events().bindComponent(this);
 
-    this.state = [{
-      type: "pic"
-    }, {
-      type: "text",
-      text: "Title (optional)",
-      name: "title"
-    }, {
-      type: "text",
-      text: "Description",
-      name: "description"
-    }, {
-      type: "text",
-      text: "webSite (optional)",
-      name: "title"
-    }, {
-      type: "tags",
-      text: "Location",
-      name: "location"
-    }, {
-      type: "tags",
-      text: "Add Tags",
-      name: "tags"
-    }, {
-      type: "toogle",
-      text: "Facebook",
-      name: "facebook"
-    }, {
-      type: "toogle",
-      text: "Instagram",
-      name: "insta"
-    }, {
-      type: "toogle",
-      text: "Twitter",
-      name: "twitter"
-    }]
+    this.state = listElement;
   }
 
   navigationButtonPressed({ buttonId }) {

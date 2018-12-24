@@ -1,0 +1,35 @@
+[{
+    "type": "pic"
+  }, {
+    "type": "text",
+    "text": "Title (optional)",
+    "name": "title"
+  }, {
+    "type": "text",
+    "text": "Description",
+    "name": "description"
+  }, {
+    "type": "text",
+    "text": "webSite (optional)",
+    "name": "title"
+  }, {
+    "type": "tags",
+    "text": "Location",
+    "name": "location"
+  }, {
+    "type": "tags",
+    "text": "Add Tags",
+    "name": "tags"
+  }, {
+    "type": "toogle",
+    "text": "Facebook",
+    "name": "facebook"
+  }, {
+    "type": "toogle",
+    "text": "Instagram",
+    "name": "insta"
+  }, {
+    "type": "toogle",
+    "text": "Twitter",
+    "name": "twitter"
+}]
