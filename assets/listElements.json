@@ -13,7 +13,7 @@
     "text": "webSite (optional)",
     "name": "title"
   }, {
-    "type": "tags",
+    "type": "arrow",
     "text": "Location",
     "name": "location"
   }, {

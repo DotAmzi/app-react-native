@@ -16,11 +16,11 @@ const ArrowElement = ({text}) => {
         flexDirection: 'row',
         height: 70        
 			}}>
-				<View style={{flex: 2, height: 50}}>
+				<View style={{flex: 2, alignSelf: 'center'}}>
 					<Text style={styles.labelArrow}>{text}</Text>
 				</View>
 
-				<View style={{width: 50, height: 50}}>
+				<View style={{width: 50, alignSelf: 'center'}}>
 					<Image source={require('../assets/next.png')} />
 				</View>
 				

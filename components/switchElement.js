@@ -13,13 +13,14 @@ const SwitchElement = ({sub}) => {
 		<View>
 			<View style={{
 				flex: 1,
-				flexDirection: 'row'
+				flexDirection: 'row',
+				height: 50
 			}}>
-				<View style={{flex: 2, height: 50}}>
+				<View style={{flex: 2, alignSelf: 'center'}}>
 					<Text style={styles.labelSwitch}>{sub}</Text>
 				</View>
 
-				<View style={{width: 50, height: 50}}>
+				<View style={{width: 50, alignSelf: 'center'}}>
 					<Switch />
 				</View>
 				
@@ -30,12 +31,8 @@ const SwitchElement = ({sub}) => {
 }
 
 const styles = StyleSheet.create({
-  fieldText: {
-    height: 70,
-    fontSize: 20
-  },
   labelSwitch: {
-    fontSize: 20
+		fontSize: 20
   }
 });
 

@@ -66,7 +66,7 @@ export default class NewPost extends Component {
               )
             break;
 
-            case "tags":
+            case "arrow":
               return (
                 <View style={styles.line}>
                   <ArrowElement text={item.text} />
@@ -76,7 +76,9 @@ export default class NewPost extends Component {
             
             case "tags":
               return (
-                <ArrowElement text={item.text} />
+                <View style={styles.line}>
+                  <ArrowElement text={item.text} />
+                </View>
               )
             break;
           
