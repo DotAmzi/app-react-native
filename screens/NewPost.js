@@ -5,7 +5,8 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Text
+  Dimensions,
+  Keyboard
 } from 'react-native';
 import {SwitchElement} from "../components/switchElement";
 import { ArrowElement } from '../components/arrowElement';
@@ -92,24 +93,9 @@ class NewPost extends Component {
     }
   }
 
-  getPhoto(state) {
-    if(state.step === 1) {
-      return (
-        <TouchableOpacity onPress={() => this.onPress()}>
-          <TakePic imageUser={{uri: 'https://t4.rbxcdn.com/c3c90deaeaff865ef9c1229ff6f34833'}} />
-        </TouchableOpacity>
-      );
-    }
-  }
-
-  _keyboardDidShow () {
-    document.getElementById('component').style
-  }
-
   render() {
     return (
-      <View id="component" style={{flex: 1}}>
-        {this.getPhoto(this.state)}
+      <View>
         <FlatList
           data={this.state.elements}
           onRefresh={() => this.onRefresh()}
@@ -129,6 +115,14 @@ class NewPost extends Component {
                     </View>
                   )
                   break;
+
+                case "pic":
+                  return (
+                    <TouchableOpacity onPress={() => this.onPress()}>
+                      <TakePic imageUser={{uri: 'https://t4.rbxcdn.com/c3c90deaeaff865ef9c1229ff6f34833'}} />
+                    </TouchableOpacity>
+                  );
+                break;
 
                 case "toogle":
                   return (
