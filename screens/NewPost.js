@@ -12,6 +12,7 @@ import { Navigation } from "react-native-navigation";
 import listElement from "../assets/listElements.json";
 import {TakePic} from '../components/TakePic';
 import ImagePicker from 'react-native-image-picker';
+import { connect } from 'react-redux';
 
 import { 
   pictureChanged, 
@@ -25,7 +26,7 @@ import {
   twitterChanged
 } from '../redux/actions';
 
-class NewPostClass extends Component {
+class NewPost extends Component {
   static get options() {
     return {
       topBar: {
@@ -183,9 +184,9 @@ const mapStateToProps = state => {
     instagram: state.fields.instagram,
     twitter: state.fields.twitter
   }
-}
+};
 
-const NewPost = connect(mapStateToProps, { 
+export default connect(mapStateToProps, { 
   pictureChanged, 
   titleChanged, 
   descriptionChanged,
@@ -195,6 +196,4 @@ const NewPost = connect(mapStateToProps, {
   facebookChanged,
   instagramChanged,
   twitterChanged
-})(NewPostClass);
-
-export { NewPost };
+})(NewPost);
