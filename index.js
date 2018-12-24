@@ -2,11 +2,15 @@
 
 import Home from './screens/Home';
 import NewPost from './screens/NewPost';
+import {Provider} from 'react-redux';
+import reducers from './redux/reducers';
 
 import { Navigation } from "react-native-navigation";
 
+const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+
 Navigation.registerComponent('redesocial.home', () => Home);
-Navigation.registerComponent('redesocial.newPost', () => NewPost);
+Navigation.registerComponentWithRedux('redesocial.newPost', () => NewPost, Provider, store);
 
 Navigation.events().registerAppLaunchedListener(() => { 
 
