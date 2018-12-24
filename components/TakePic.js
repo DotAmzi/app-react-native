@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  Image
+  Image,
+  Dimensions
 } from 'react-native';
 
-
+const dimensions = Dimensions.get('window');
+const imageHeight = Math.round(dimensions.height / 2);
+const imageWidth = dimensions.width;
 
 const TakePic = ({imageUser}) => {
   return (
@@ -14,7 +17,7 @@ const TakePic = ({imageUser}) => {
         imageUser ? (
           <Image
             source={imageUser}
-            style={{ height: 140, width: 140, borderRadius: 70, }}
+            style={{ height: imageHeight, width: imageWidth}}
           />
         ) :
         (<Text>maroka</Text>)

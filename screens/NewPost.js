@@ -67,54 +67,54 @@ export default class NewPost extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <TouchableOpacity onPress={() => this.onPress()}>
-          <TakePic imageUser={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}} />
+          <TakePic imageUser={{uri: 'https://t4.rbxcdn.com/c3c90deaeaff865ef9c1229ff6f34833'}} />
         </TouchableOpacity>
 
-      <FlatList
-        data={this.state}
-        renderItem={({item}) => {
-          switch (item.type) {
-            case "text":
-              return (
-                <View style={styles.line}>
-                  <TextInput
-                    style={styles.fieldText}
-                    onChangeText={(text) => this.setState(item.name)}
-                    value={item.text}
-                  />
-                </View>
-              )
+        <FlatList
+          data={this.state}
+          renderItem={({item}) => {
+            switch (item.type) {
+              case "text":
+                return (
+                  <View style={styles.line}>
+                    <TextInput
+                      style={styles.fieldText}
+                      onChangeText={(text) => this.setState(item.name)}
+                      value={item.text}
+                    />
+                  </View>
+                )
+                break;
+
+              case "toogle":
+                return (
+                  <SwitchElement sub={item.text} />
+                )
               break;
 
-            case "toogle":
-              return (
-                <SwitchElement sub={item.text} />
-              )
-            break;
-
-            case "arrow":
-              return (
-                <View style={styles.line}>
-                  <ArrowElement text={item.text} />
-                </View>
-              )
-            break;
+              case "arrow":
+                return (
+                  <View style={styles.line}>
+                    <ArrowElement text={item.text} />
+                  </View>
+                )
+              break;
+              
+              case "tags":
+                return (
+                  <View style={styles.line}>
+                    <ArrowElement text={item.text} />
+                  </View>
+                )
+              break;
             
-            case "tags":
-              return (
-                <View style={styles.line}>
-                  <ArrowElement text={item.text} />
-                </View>
-              )
-            break;
-          
-            default:
-              break;
-          }
-        }}
-      />
+              default:
+                break;
+            }
+          }}
+        />
       </View>
 
     );
