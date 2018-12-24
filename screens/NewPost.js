@@ -37,7 +37,11 @@ export default class NewPost extends Component {
     super(props);
     Navigation.events().bindComponent(this);
 
-    this.state = listElement;
+    this.state = {
+      elements: listElement
+    };
+    this.state.step = 1;
+    this.state.isFetching = false;
   }
 
   onPress() {
@@ -61,57 +65,77 @@ export default class NewPost extends Component {
     });
   }
 
+  onRefresh() {
+    this.setState({ isFetching: true }, function() { this.setState({elements: listElement}) });
+  }
+
   navigationButtonPressed({ buttonId }) {
-    console.log(buttonId);
+    if(buttonId === 'next-post' && this.state.step === 1) {
+      this.setState({step: 2})
+    }
+    if(buttonId === 'cancel-post' && this.state.step === 2) {
+      this.setState({step: 1})
+    }
+  }
+
+  getPhoto(state) {
+    if(state.step === 1) {
+      return (
+        <TouchableOpacity onPress={() => this.onPress()}>
+          <TakePic imageUser={{uri: 'https://t4.rbxcdn.com/c3c90deaeaff865ef9c1229ff6f34833'}} />
+        </TouchableOpacity>
+      );
+    }
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
-        <TouchableOpacity onPress={() => this.onPress()}>
-          <TakePic imageUser={{uri: 'https://t4.rbxcdn.com/c3c90deaeaff865ef9c1229ff6f34833'}} />
-        </TouchableOpacity>
-
+        {this.getPhoto(this.state)}
         <FlatList
-          data={this.state}
+          data={this.state.elements}
+          onRefresh={() => this.onRefresh()}
+          refreshing={this.state.isFetching}
           renderItem={({item}) => {
-            switch (item.type) {
-              case "text":
-                return (
-                  <View style={styles.line}>
-                    <TextInput
-                      style={styles.fieldText}
-                      onChangeText={(text) => this.setState(item.name)}
-                      value={item.text}
-                    />
-                  </View>
-                )
+            if(item.step === this.state.step) {
+              switch (item.type) {
+                case "text":
+                  return (
+                    <View style={styles.line}>
+                      <TextInput
+                        style={styles.fieldText}
+                        onChangeText={(text) => this.setState(item.name)}
+                        value={item.text}
+                      />
+                    </View>
+                  )
+                  break;
+
+                case "toogle":
+                  return (
+                    <SwitchElement sub={item.text} />
+                  )
                 break;
 
-              case "toogle":
-                return (
-                  <SwitchElement sub={item.text} />
-                )
-              break;
-
-              case "arrow":
-                return (
-                  <View style={styles.line}>
-                    <ArrowElement text={item.text} />
-                  </View>
-                )
-              break;
+                case "arrow":
+                  return (
+                    <View style={styles.line}>
+                      <ArrowElement text={item.text} />
+                    </View>
+                  )
+                break;
+                
+                case "tags":
+                  return (
+                    <View style={styles.line}>
+                      <ArrowElement text={item.text} />
+                    </View>
+                  )
+                break;
               
-              case "tags":
-                return (
-                  <View style={styles.line}>
-                    <ArrowElement text={item.text} />
-                  </View>
-                )
-              break;
-            
-              default:
-                break;
+                default:
+                  break;
+              }
             }
           }}
         />
