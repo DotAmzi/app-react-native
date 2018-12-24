@@ -11,7 +11,7 @@ import { Navigation } from "react-native-navigation";
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    Navigation.events().bindComponent(this); // <== Will be automatically unregistered when unmounted
+    Navigation.events().bindComponent(this); 
   }
 
   render() {

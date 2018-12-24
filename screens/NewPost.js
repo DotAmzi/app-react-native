@@ -5,8 +5,7 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Dimensions,
-  Keyboard
+  Alert
 } from 'react-native';
 import {SwitchElement} from "../components/switchElement";
 import { ArrowElement } from '../components/arrowElement';
@@ -68,14 +67,19 @@ class NewPost extends Component {
     };
 
     ImagePicker.showImagePicker(options, (response) => {
-      if (response.didCancel) {
+      if (response.error) {
+        Alert.alert(
+          'Erro',
+          'Erro ao processar Imagem',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        )
+      }else if(response.didCancel) {
         console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
       } else {
-        // this.state.imageSelected({ uri: response.uri });
+        this.props.pictureChanged({ uri: response.uri });
       }
     });
   }
@@ -85,8 +89,19 @@ class NewPost extends Component {
   }
 
   navigationButtonPressed({ buttonId }) {
-    if(buttonId === 'next-post' && this.state.step === 1 && this.props.description !== '') {
-      this.setState({step: 2})
+    if(buttonId === 'next-post' && this.state.step === 1) {
+      if (this.props.description === '') {
+        Alert.alert(
+          'Erro',
+          'Campo Descrição obrigatório',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        )
+      } else {
+        this.setState({step: 2})
+      }
     }
     if(buttonId === 'cancel-post' && this.state.step === 2) {
       this.setState({step: 1})
@@ -118,9 +133,11 @@ class NewPost extends Component {
 
                 case "pic":
                   return (
-                    <TouchableOpacity onPress={() => this.onPress()}>
-                      <TakePic imageUser={{uri: 'https://t4.rbxcdn.com/c3c90deaeaff865ef9c1229ff6f34833'}} />
-                    </TouchableOpacity>
+                    <View style={styles.line}>
+                      <TouchableOpacity onPress={() => this.onPress()}>
+                        <TakePic imageUser={this.props.picture} />
+                      </TouchableOpacity>
+                    </View>
                   );
                 break;
 
