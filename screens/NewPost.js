@@ -58,6 +58,16 @@ class NewPost extends Component {
     this.state.isFetching = false;
   }
 
+  getLocationAsync = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+        const region = 'Lat/Lng: ' + position.coords.latitude + ',' + position.coords.longitude;
+        this.props.locationChanged(region);
+      },
+      error => console.log(error.message),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    )
+  }
+
   onPress() {
     const options = {
       storageOptions: {
@@ -149,9 +159,11 @@ class NewPost extends Component {
 
                 case "arrow":
                   return (
-                    <View style={styles.line}>
-                      <ArrowElement text={item.text} />
-                    </View>
+                    <TouchableOpacity onPress={() => this.getLocationAsync()}>
+                      <View style={styles.line}>
+                        <ArrowElement text={this.props.location ? this.props.location : item.text} />
+                      </View>
+                    </TouchableOpacity>
                   )
                 break;
                 
