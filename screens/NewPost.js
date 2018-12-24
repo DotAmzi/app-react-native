@@ -4,12 +4,14 @@ import {
   View,
   StyleSheet,
   FlatList,
-  Text
+  TouchableOpacity
 } from 'react-native';
 import {SwitchElement} from "../components/switchElement";
 import { ArrowElement } from '../components/arrowElement';
 import { Navigation } from "react-native-navigation";
 import listElement from "../assets/listElements.json";
+import {TakePic} from '../components/TakePic';
+import ImagePicker from 'react-native-image-picker';
 
 export default class NewPost extends Component {
   static get options() {
@@ -38,12 +40,38 @@ export default class NewPost extends Component {
     this.state = listElement;
   }
 
+  onPress() {
+    const options = {
+      storageOptions: {
+        skipBackup: true,
+        path: 'images'
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        // this.state.imageSelected({ uri: response.uri });
+      }
+    });
+  }
+
   navigationButtonPressed({ buttonId }) {
-    console.log(buttonId)
+    console.log(buttonId);
   }
 
   render() {
     return (
+      <View>
+        <TouchableOpacity onPress={() => this.onPress()}>
+          <TakePic imageUser={{uri: 'https://facebook.github.io/react-native/docs/assets/favicon.png'}} />
+        </TouchableOpacity>
+
       <FlatList
         data={this.state}
         renderItem={({item}) => {
@@ -87,6 +115,8 @@ export default class NewPost extends Component {
           }
         }}
       />
+      </View>
+
     );
   }
 }
