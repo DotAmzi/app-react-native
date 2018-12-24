@@ -110,10 +110,30 @@ class NewPost extends Component {
           { cancelable: false }
         )
       } else {
+        Navigation.mergeOptions(this.props.componentId, {
+          topBar: {
+            rightButtons: [
+              {
+                id: 'done',
+                text: 'Done'
+              }
+            ]
+          }
+        });
         this.setState({step: 2})
       }
     }
     if(buttonId === 'cancel-post' && this.state.step === 2) {
+      Navigation.mergeOptions(this.props.componentId, {
+        topBar: {
+          rightButtons: [
+            {
+              id: 'next-post',
+              text: 'Next'
+            }
+          ]
+        }
+      });
       this.setState({step: 1})
     }
   }
