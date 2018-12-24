@@ -13,7 +13,19 @@ import listElement from "../assets/listElements.json";
 import {TakePic} from '../components/TakePic';
 import ImagePicker from 'react-native-image-picker';
 
-export default class NewPost extends Component {
+import { 
+  pictureChanged, 
+  titleChanged, 
+  descriptionChanged,
+  websiteChanged, 
+  locationChanged,
+  tagsChanged,
+  facebookChanged,
+  instagramChanged,
+  twitterChanged
+} from '../redux/actions';
+
+class NewPostClass extends Component {
   static get options() {
     return {
       topBar: {
@@ -158,3 +170,29 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
   }
 });
+
+const mapStateToProps = state => {
+  return {
+    picture: state.fields.picture,
+    title: state.fields.title,
+    description: state.fields.description,
+    website: state.fields.website,
+    location: state.fields.location,
+    tags: state.fields.tags,
+    facebook: state.fields.facebook,
+    instagram: state.fields.instagram,
+    twitter: state.fields.twitter
+  }
+}
+
+const NewPostClass = connect(mapStateToProps, { 
+  pictureChanged, 
+  titleChanged, 
+  descriptionChanged,
+  websiteChanged, 
+  locationChanged,
+  tagsChanged,
+  facebookChanged,
+  instagramChanged,
+  twitterChanged
+})(NewPost);
