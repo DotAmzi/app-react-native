@@ -33,7 +33,8 @@ const ArrowElement = ({text}) => {
 
 const styles = StyleSheet.create({
   labelArrow: {
-    fontSize: 20
+		fontSize: 20,
+		fontFamily: 'System San Francisco Display Regular'
   }
 });
 

@@ -7,12 +7,13 @@ const Chips = ({name, color}) => {
   } = styles;
 
   return (
-        <Text style={[chipStyle, { backgroundColor: color }]}>{name}</Text>
+    <Text style={[chipStyle, { backgroundColor: color }]}>{name}</Text>
   );
 };
 
 const styles = StyleSheet.create({
   chipStyle: {
+    fontFamily: 'System San Francisco Display Regular',
     paddingTop: 3,
     paddingBottom: 3,
     paddingLeft: 10,

@@ -40,6 +40,10 @@
 		AD321F86677341D2A471755F /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A94FF7CF77CF431A81C0767D /* libReactNativeNavigation.a */; };
 		6A084B71C0854E6E9BBBE573 /* ReactNativeNavigationTests.xctest in Resources */ = {isa = PBXBuildFile; fileRef = 1C641D6FD1D5477595EC519F /* ReactNativeNavigationTests.xctest */; };
 		C4125436BAE3450BBE422B7B /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BBB978F80914CCD92ADBBA8 /* libRNImagePicker.a */; };
+		1519080D9343454F95BD7ADD /* System San Francisco Display Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EB671951EAC34D128F634C54 /* System San Francisco Display Bold.ttf */; };
+		1C9C3513B7174471A2CACBD7 /* System San Francisco Display Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C93F8204DE3C4FB79D7D0E87 /* System San Francisco Display Regular.ttf */; };
+		3324FC735D6C4214A174633E /* System San Francisco Display Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35F3822107854604AE15B393 /* System San Francisco Display Thin.ttf */; };
+		42D7B6C99BA94F12A3AF8E12 /* System San Francisco Display Ultralight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DA8D4207A9440379B92429D /* System San Francisco Display Ultralight.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -350,6 +354,10 @@
 		1C641D6FD1D5477595EC519F /* ReactNativeNavigationTests.xctest */ = {isa = PBXFileReference; name = "ReactNativeNavigationTests.xctest"; path = "ReactNativeNavigationTests.xctest"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.cfbundle; explicitFileType = undefined; includeInIndex = 0; };
 		84E50C4153F64A5A9395022C /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		4BBB978F80914CCD92ADBBA8 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		EB671951EAC34D128F634C54 /* System San Francisco Display Bold.ttf */ = {isa = PBXFileReference; name = "System San Francisco Display Bold.ttf"; path = "../assets/fonts/System San Francisco Display Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C93F8204DE3C4FB79D7D0E87 /* System San Francisco Display Regular.ttf */ = {isa = PBXFileReference; name = "System San Francisco Display Regular.ttf"; path = "../assets/fonts/System San Francisco Display Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		35F3822107854604AE15B393 /* System San Francisco Display Thin.ttf */ = {isa = PBXFileReference; name = "System San Francisco Display Thin.ttf"; path = "../assets/fonts/System San Francisco Display Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8DA8D4207A9440379B92429D /* System San Francisco Display Ultralight.ttf */ = {isa = PBXFileReference; name = "System San Francisco Display Ultralight.ttf"; path = "../assets/fonts/System San Francisco Display Ultralight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -589,6 +597,7 @@
 				00E356EF1AD99517003FC87E /* redeSocialTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				7FCD93C4C6294EABB2B755D1 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -614,6 +623,18 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		7FCD93C4C6294EABB2B755D1 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				EB671951EAC34D128F634C54 /* System San Francisco Display Bold.ttf */,
+				C93F8204DE3C4FB79D7D0E87 /* System San Francisco Display Regular.ttf */,
+				35F3822107854604AE15B393 /* System San Francisco Display Thin.ttf */,
+				8DA8D4207A9440379B92429D /* System San Francisco Display Ultralight.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -1061,6 +1082,10 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				1519080D9343454F95BD7ADD /* System San Francisco Display Bold.ttf in Resources */,
+				1C9C3513B7174471A2CACBD7 /* System San Francisco Display Regular.ttf in Resources */,
+				3324FC735D6C4214A174633E /* System San Francisco Display Thin.ttf in Resources */,
+				42D7B6C99BA94F12A3AF8E12 /* System San Francisco Display Ultralight.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

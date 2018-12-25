@@ -22,7 +22,8 @@ class Tags extends Component {
     return {
       topBar: {
         title: {
-          text: "Tagging a Product"
+          text: "Tagging a Product",
+          fontFamily: 'System San Francisco Display Regular'
         },
         leftButtons: [{
           id: "back",
@@ -123,7 +124,8 @@ const styles = StyleSheet.create({
   },
   fieldText: {
     padding: 30,
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'System San Francisco Display Regular'
   },
   line: {
     borderBottomColor: 'gray',

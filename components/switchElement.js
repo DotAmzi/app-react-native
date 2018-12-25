@@ -32,7 +32,8 @@ const SwitchElement = ({sub, valueProps, onValueChange}) => {
 
 const styles = StyleSheet.create({
   labelSwitch: {
-		fontSize: 20
+		fontSize: 20,
+		fontFamily: 'System San Francisco Display Regular'
   }
 });
 

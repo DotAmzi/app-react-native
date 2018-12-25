@@ -24,8 +24,8 @@ const TakePic = ({imageUser}) => {
         (<View style={{ height: imageHeight, width: imageWidth, flex: 1, flexDirection: 'column'}}>
           <View style={{width: imageWidth, height: rowHeight}} />
           <View style={{width: imageWidth, height: rowHeight, flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-            <Text style={{backgroundColor: '#FF1654', width: rowHeight, fontSize: 60, color: 'white', padding: 10, textAlign: 'center'}}>+</Text>
-            <Text style={{fontSize: 30, color: 'black', paddingTop: 35, paddingLeft: 10, textAlign: 'center'}}>Add Photos</Text>
+            <Text style={{fontFamily: 'System San Francisco Display Regular', backgroundColor: '#FF1654', width: rowHeight, fontSize: 60, color: 'white', padding: 10, textAlign: 'center'}}>+</Text>
+            <Text style={{fontFamily: 'System San Francisco Display Regular', fontSize: 30, color: 'black', paddingTop: 35, paddingLeft: 10, textAlign: 'center'}}>Add Photos</Text>
           </View>
           <View style={{width: imageWidth, height: rowHeight}} />
 

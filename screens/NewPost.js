@@ -35,11 +35,13 @@ class NewPost extends Component {
     return {
       topBar: {
         title: {
-          text: "New Post"
+          text: "New Post",
+          fontFamily: 'System San Francisco Display Regular'
         },
         rightButtons: [{
           id: "next-post",
-          text: "Next"
+          text: "Next",
+          fontFamily: 'System San Francisco Display Regular'
         }],
         leftButtons: [{
           id: "cancel-post",
@@ -63,7 +65,8 @@ class NewPost extends Component {
           rightButtons: [
             {
               id: 'done',
-              text: 'Done'
+              text: 'Done',
+              fontFamily: 'System San Francisco Display Regular'
             }
           ]
         }
@@ -119,7 +122,8 @@ class NewPost extends Component {
           rightButtons: [
             {
               id: 'done',
-              text: 'Done'
+              text: 'Done',
+              fontFamily: 'System San Francisco Display Regular'
             }
           ]
         }
@@ -269,7 +273,8 @@ class NewPost extends Component {
 const styles = StyleSheet.create({
   fieldText: {
     height: 70,
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: 'System San Francisco Display Regular'
   },
   labelSwitch: {
     fontSize: 20
