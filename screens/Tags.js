@@ -5,7 +5,8 @@ import {
   View,
   StyleSheet,
   TextInput,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native';
 
 import { 
@@ -66,6 +67,10 @@ class Tags extends Component {
     }
   }
 
+  addItem(text) {
+    this.props.tagsChanged(text, this.props.tagsSelect);
+  }
+
   render() {
     return (
 			<View>
@@ -93,9 +98,12 @@ class Tags extends Component {
                 item.Editora.search(this.state.fieldSearch)  > -1
               )
             ){
-              return (<View style={styles.line}>
-                <Text style={styles.fieldText}>{item.name}</Text>
-              </View>)
+              return (
+                <TouchableOpacity onPress={() => this.addItem(item.name)}>
+                  <View style={styles.line}>
+                    <Text style={styles.fieldText}>{item.name}</Text>
+                  </View>
+                </TouchableOpacity>)
             }
           }}
         />

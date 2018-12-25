@@ -5,13 +5,15 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  Alert
+  Alert,
+  Text
 } from 'react-native';
 import {SwitchElement} from "../components/switchElement";
 import { ArrowElement } from '../components/arrowElement';
 import { Navigation } from "react-native-navigation";
 import listElement from "../assets/listElements.json";
 import {TakePic} from '../components/TakePic';
+import {Chips} from '../components/chips';
 import ImagePicker from 'react-native-image-picker';
 import { connect } from 'react-redux';
 
@@ -145,6 +147,14 @@ class NewPost extends Component {
     });
   }
 
+  renderChips(tagsSelect) {
+    tagsSelect.map((tag, i) => {
+      return (
+        <Text>{tag}</Text>
+      )
+    });
+  }
+
   render() {
     return (
       <View>
@@ -201,11 +211,14 @@ class NewPost extends Component {
                 
                 case "tags":
                   return (
-                    <TouchableOpacity onPress={() => this.goToScreen('redesocial.tags')}>
-                      <View style={styles.line}>
-                        <ArrowElement text={item.text} />
-                      </View>
-                    </TouchableOpacity>
+                    <View style={styles.line}>
+                      <TouchableOpacity onPress={() => this.goToScreen('redesocial.tags')}>
+                          <ArrowElement text={item.text} />
+                          {this.props.tagsSelect.map((tag, i) => (<Chips name={tag} color="red" />))}
+                      </TouchableOpacity>
+                    
+                    </View>
+
                   )
                 break;
               

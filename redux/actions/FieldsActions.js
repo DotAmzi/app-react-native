@@ -6,6 +6,7 @@ import {
   LOCATION,
   TAGS,
   TAGS_SUCCESS,
+  TAGS_SELECT,
   FACEBOOK,
   INSTAGRAM,
   TWITTER
@@ -47,12 +48,31 @@ export const locationChanged = (text) => {
   };
 };
 
-export const tagsChanged = (text) => {
-  return {
-    type: LOCATION,
-    payload: text
+export const tagsChanged = (tagSelected, propsTags) => {
+  return (dispatch) => {
+    let arrayTags = [];
+    arrayTags.push(tagSelected);
+    let propsTagsSize = propsTags.length;
+    if(propsTagsSize === 0 ) {
+      dispatchTagsSelectedSuccess(dispatch, arrayTags);
+    }
+    propsTags.map((tag, index) => {
+      arrayTags.push(tag);
+
+      if(index === (propsTagsSize - 1)) {
+        dispatchTagsSelectedSuccess(dispatch, arrayTags);
+      }
+    });
   };
+}
+
+export const dispatchTagsSelectedSuccess = (dispatch, tags) => {
+  dispatch({
+    type: TAGS_SELECT,
+    payload: tags
+  });
 };
+
 
 export const tagsLoad = () => {
   return (dispatch) => {
