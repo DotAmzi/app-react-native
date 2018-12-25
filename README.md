@@ -20,7 +20,3 @@ npm install
  `Aplicação não foi testada no iOS`
 
 5. Após os passos anteriores o aplicativo já pode ser testado em sua máquina
-
-6. Abaixo link da APK para testar em seu aparelho
-
-[https://drive.google.com/file/d/1qJ8FmKdCunpoHROS1fZhLUtHMu5pcUFS/view?usp=sharing](https://drive.google.com/file/d/1qJ8FmKdCunpoHROS1fZhLUtHMu5pcUFS/view?usp=sharing "Baixar APK")
