@@ -86,9 +86,9 @@ class Tags extends Component {
           renderItem={({item}) => {
             if(
               this.props.tagsSelect.indexOf(item.name) === -1 &&
-              this.state.fieldSearch === null ||
+              (this.state.fieldSearch === null ||
               item.name.search(this.state.fieldSearch) > -1 ||
-              item.Editora.search(this.state.fieldSearch)  > -1
+              item.Editora.search(this.state.fieldSearch)  > -1)
             ){
               return (
                 <TouchableOpacity onPress={() => this.addItem(item.name)}>
