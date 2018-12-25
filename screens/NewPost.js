@@ -76,6 +76,7 @@ class NewPost extends Component {
   }
 
   getLocationAsync = () => {
+    this.props.locationChanged('Locating your position...');
     navigator.geolocation.getCurrentPosition((position) => {
         const region = 'Lat/Lng: ' + position.coords.latitude + ',' + position.coords.longitude;
         this.props.locationChanged(region);
@@ -116,31 +117,32 @@ class NewPost extends Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.step === 2) {
-      Navigation.mergeOptions(this.props.componentId, {
-        topBar: {
-          rightButtons: [
-            {
-              id: 'done',
-              text: 'Done',
-              fontFamily: 'System San Francisco Display Regular'
-            }
-          ]
-        }
-      });
-    }else{
-      Navigation.mergeOptions(this.props.componentId, {
-        topBar: {
-          rightButtons: [
-            {
-              id: 'next-post',
-              text: 'Next'
-            }
-          ]
-        }
-      });
+    if(newProps.step !== this.props.step) {
+      if(newProps.step === 2) {
+        Navigation.mergeOptions(this.props.componentId, {
+          topBar: {
+            rightButtons: [
+              {
+                id: 'done',
+                text: 'Done',
+                fontFamily: 'System San Francisco Display Regular'
+              }
+            ]
+          }
+        });
+      }else{
+        Navigation.mergeOptions(this.props.componentId, {
+          topBar: {
+            rightButtons: [
+              {
+                id: 'next-post',
+                text: 'Next'
+              }
+            ]
+          }
+        });
+      }
     }
-
   }
 
   navigationButtonPressed({ buttonId }) {
