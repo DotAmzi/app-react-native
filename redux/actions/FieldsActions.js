@@ -9,7 +9,8 @@ import {
   TAGS_SELECT,
   FACEBOOK,
   INSTAGRAM,
-  TWITTER
+  TWITTER,
+  RESET_FIELDS
 } from './types';
 import feed from '../../assets/feed.json';
 
@@ -64,6 +65,12 @@ export const tagsChanged = (tagSelected, propsTags) => {
       }
     });
   };
+}
+
+export const resetForms = () => {
+  return {
+    type: RESET_FIELDS
+  }
 }
 
 export const dispatchTagsSelectedSuccess = (dispatch, tags) => {

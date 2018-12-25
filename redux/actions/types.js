@@ -10,3 +10,5 @@ export const TAGS_SELECT = 'tags_select';
 export const FACEBOOK = 'facebook';
 export const INSTAGRAM = 'instagram';
 export const TWITTER = 'twitter';
+
+export const RESET_FIELDS = 'reset_fields';

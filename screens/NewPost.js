@@ -25,7 +25,8 @@ import {
   locationChanged,
   facebookChanged,
   instagramChanged,
-  twitterChanged
+  twitterChanged,
+  resetForms
 } from '../redux/actions';
 
 class NewPost extends Component {
@@ -81,7 +82,7 @@ class NewPost extends Component {
       if (response.error) {
         Alert.alert(
           'Erro',
-          'Erro ao processar Imagem',
+          'Error processing image',
           [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ],
@@ -104,7 +105,7 @@ class NewPost extends Component {
       if (this.props.description === '') {
         Alert.alert(
           'Erro',
-          'Campo Descrição obrigatório',
+          'Description Input Required',
           [
             {text: 'OK', onPress: () => console.log('OK Pressed')},
           ],
@@ -136,6 +137,18 @@ class NewPost extends Component {
         }
       });
       this.setState({step: 1})
+    }
+    if(buttonId === 'done' && this.state.step === 2) {
+      this.props.resetForms();
+      Alert.alert(
+        'Success',
+        'Registry successfully saved',
+        [
+          {text: 'OK', onPress: () => console.log('OK Pressed')},
+        ],
+        { cancelable: false }
+      )
+      this.setState({step: 1});
     }
   }
 
@@ -214,7 +227,7 @@ class NewPost extends Component {
                     <View style={styles.line}>
                       <TouchableOpacity onPress={() => this.goToScreen('redesocial.tags')}>
                           <ArrowElement text={item.text} />
-                          {this.props.tagsSelect.map((tag, i) => (<Chips name={tag} color="red" />))}
+                          {this.props.tagsSelect.map((tag, i) => (<Chips name={tag} color="#FF1654" />))}
                       </TouchableOpacity>
                     
                     </View>
@@ -270,5 +283,6 @@ export default connect(mapStateToProps, {
   locationChanged,
   facebookChanged,
   instagramChanged,
-  twitterChanged
+  twitterChanged,
+  resetForms
 })(NewPost);

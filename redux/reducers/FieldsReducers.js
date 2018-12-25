@@ -9,7 +9,8 @@ import {
   FACEBOOK,
   INSTAGRAM,
   TWITTER,
-  TAGS_SELECT
+  TAGS_SELECT,
+  RESET_FIELDS
   } from '../actions/types';
   
   const INITIAL_STATE = {
@@ -27,6 +28,8 @@ import {
   
   export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
+      case RESET_FIELDS:
+        return INITIAL_STATE;
       case TITLE:
         return { ...state, title: action.payload };
       case PICTURE:
