@@ -263,6 +263,7 @@ class NewPost extends Component {
               }
             }
           }}
+          keyExtractor={(item, index) => index.toString()}
         />
       </View>
 

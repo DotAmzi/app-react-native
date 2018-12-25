@@ -16,6 +16,8 @@ import {
 } from '../redux/actions';
 
 import { Navigation } from "react-native-navigation";
+import Placeholder from 'rn-placeholder';
+
 
 class Tags extends Component {
   static get options() {
@@ -74,21 +76,9 @@ class Tags extends Component {
     this.props.tagsChanged(text, this.props.tagsSelect);
   }
 
-  render() {
-    return (
-			<View>
-        <View style={styles.line}>
-          <TextInput
-            style={styles.input}
-            onChangeText={(text) => {
-              this.setState({fieldSearch: text});
-              return this.onRefresh();
-            }}
-            value={this.state.fieldSearch}
-            placeholder='Type your tag'
-          />
-        </View>
-
+  renderListTags() {
+    if(this.props.tags.length > 0) {
+      return (
         <FlatList
           data={this.state.list}
           onRefresh={() => this.setState({list: this.props.tags})}
@@ -108,8 +98,54 @@ class Tags extends Component {
                 </TouchableOpacity>)
             }
           }}
+          keyExtractor={(item, index) => index.toString()}
         />
+      );
+    }else{
+      return (
+        <View>
+          {
+            [1,2,3,4].map(({value, index}) => {
+              return (
+                <View style={[styles.line, {padding: 15}]}>
+                    <Placeholder.Paragraph
+                    lineNumber={3}
+                    animate="fade"
+                    lineNumber={4}
+                    lineSpacing={5}
+                    lastLineWidth="30%"
+                    onReady={this.state.isReady}
+                    keyExtractor={(value, index) => index.toString()}
+                  />
+                </View>
+              )
+            })
+          }
+          
+        </View>
+        
+      );
+    }
+  };
+
+  render() {
+    return (
+			<View>
+        <View style={styles.line}>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => {
+              this.setState({fieldSearch: text});
+              return this.onRefresh();
+            }}
+            value={this.state.fieldSearch}
+            placeholder='Type your tag'
+          />
+        </View>
+      
+        {this.renderListTags()}
       </View>
+        
     );
   }
 }
@@ -130,7 +166,6 @@ const styles = StyleSheet.create({
   line: {
     borderBottomColor: 'gray',
     borderBottomWidth: 0.5,
-    
   }
 });
 
