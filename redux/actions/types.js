@@ -12,3 +12,5 @@ export const INSTAGRAM = 'instagram';
 export const TWITTER = 'twitter';
 
 export const RESET_FIELDS = 'reset_fields';
+
+export const STEP = 'step';

@@ -10,7 +10,8 @@ import {
   FACEBOOK,
   INSTAGRAM,
   TWITTER,
-  RESET_FIELDS
+  RESET_FIELDS,
+  STEP
 } from './types';
 import feed from '../../assets/feed.json';
 
@@ -64,6 +65,14 @@ export const tagsChanged = (tagSelected, propsTags) => {
         dispatchTagsSelectedSuccess(dispatch, arrayTags);
       }
     });
+  };
+}
+
+
+export const changeStep = (step) => {
+  return {
+    type: STEP,
+    payload: step
   };
 }
 

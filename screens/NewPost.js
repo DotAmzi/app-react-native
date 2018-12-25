@@ -26,7 +26,8 @@ import {
   facebookChanged,
   instagramChanged,
   twitterChanged,
-  resetForms
+  resetForms,
+  changeStep
 } from '../redux/actions';
 
 class NewPost extends Component {
@@ -56,7 +57,18 @@ class NewPost extends Component {
     this.state = {
       elements: listElement
     };
-    this.state.step = 1;
+    if(this.props.step === 2) {
+      Navigation.mergeOptions(this.props.componentId, {
+        topBar: {
+          rightButtons: [
+            {
+              id: 'done',
+              text: 'Done'
+            }
+          ]
+        }
+      });
+    }
     this.state.isFetching = false;
   }
 
@@ -100,32 +112,19 @@ class NewPost extends Component {
     this.setState({ isFetching: true }, function() { this.setState({elements: listElement}) });
   }
 
-  navigationButtonPressed({ buttonId }) {
-    if(buttonId === 'next-post' && this.state.step === 1) {
-      if (this.props.description === '') {
-        Alert.alert(
-          'Erro',
-          'Description Input Required',
-          [
-            {text: 'OK', onPress: () => console.log('OK Pressed')},
-          ],
-          { cancelable: false }
-        )
-      } else {
-        Navigation.mergeOptions(this.props.componentId, {
-          topBar: {
-            rightButtons: [
-              {
-                id: 'done',
-                text: 'Done'
-              }
-            ]
-          }
-        });
-        this.setState({step: 2})
-      }
-    }
-    if(buttonId === 'cancel-post' && this.state.step === 2) {
+  componentWillReceiveProps(newProps) {
+    if(newProps.step === 2) {
+      Navigation.mergeOptions(this.props.componentId, {
+        topBar: {
+          rightButtons: [
+            {
+              id: 'done',
+              text: 'Done'
+            }
+          ]
+        }
+      });
+    }else{
       Navigation.mergeOptions(this.props.componentId, {
         topBar: {
           rightButtons: [
@@ -136,9 +135,29 @@ class NewPost extends Component {
           ]
         }
       });
-      this.setState({step: 1})
     }
-    if(buttonId === 'done' && this.state.step === 2) {
+
+  }
+
+  navigationButtonPressed({ buttonId }) {
+    if(buttonId === 'next-post' && this.props.step === 1) {
+      if (this.props.description === '') {
+        Alert.alert(
+          'Erro',
+          'Description Input Required',
+          [
+            {text: 'OK', onPress: () => console.log('OK Pressed')},
+          ],
+          { cancelable: false }
+        )
+      } else {
+        this.props.changeStep(2)
+      }
+    }
+    if(buttonId === 'cancel-post' && this.props.step === 2) {
+      this.props.changeStep(1);
+    }
+    if(buttonId === 'done' && this.props.step === 2) {
       this.props.resetForms();
       Alert.alert(
         'Success',
@@ -148,7 +167,7 @@ class NewPost extends Component {
         ],
         { cancelable: false }
       )
-      this.setState({step: 1});
+      this.props.changeStep(1);
     }
   }
 
@@ -176,7 +195,7 @@ class NewPost extends Component {
           onRefresh={() => this.onRefresh()}
           refreshing={this.state.isFetching}
           renderItem={({item}) => {
-            if(item.step === this.state.step) {
+            if(item.step === this.props.step) {
               switch (item.type) {
                 case "text":
                   return (
@@ -271,7 +290,8 @@ const mapStateToProps = state => {
     tagsSelect: state.fields.tagsSelect,
     facebook: state.fields.facebook,
     instagram: state.fields.instagram,
-    twitter: state.fields.twitter
+    twitter: state.fields.twitter,
+    step: state.fields.step
   }
 };
 
@@ -284,5 +304,6 @@ export default connect(mapStateToProps, {
   facebookChanged,
   instagramChanged,
   twitterChanged,
-  resetForms
+  resetForms,
+  changeStep
 })(NewPost);

@@ -11,7 +11,8 @@ import {
 
 import { 
   tagsChanged,
-  tagsLoad
+  tagsLoad,
+  changeStep
 } from '../redux/actions';
 
 import { Navigation } from "react-native-navigation";
@@ -52,6 +53,7 @@ class Tags extends Component {
 
   navigationButtonPressed({ buttonId }) {
     if(buttonId === 'back') {
+      this.props.changeStep(2);
       Navigation.push(this.props.componentId, {
         component: {
           name: 'redesocial.newPost'
@@ -139,5 +141,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { 
   tagsChanged,
-  tagsLoad
+  tagsLoad,
+  changeStep
 })(Tags);
